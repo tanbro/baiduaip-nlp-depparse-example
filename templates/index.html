@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<body>
+    <script src="../node_modules/d3/dist/d3.js"></script>
+    <script src="../node_modules/viz.js/viz.js" type="javascript/worker"></script>
+    <script src="../node_modules/d3-graphviz/build/d3-graphviz.js"></script>
+
+    <div>
+        <textarea id="inputSentence" placeholder="输入要进行句法依存分析的句子"></textarea>
+        <button onclick="visualizeDeprel()">进行句法依存分析</button>
+        <div id="graph" style="text-align: center;"></div>
+    </div>
+
+    <script>
+        function visualizeDeprel() {
+            let val = document.getElementById('inputSentence').value;
+
+            fetch('visualize', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: val
+                })
+            }).then(resp => {
+                if (!resp.ok) {
+                    throw Error(resp.statusText);
+                }
+                return resp.json();
+            }).then(data => {
+                if ('error_code' in data) {
+                    alert(`百度云平台返回错误信息: ${data['error_msg']}`);
+                    throw Error(data['error_msg']);
+                } else {
+                    d3.select("#graph").graphviz()
+                        .renderDot(data.data);
+                }
+            }).catch(function(error) {
+                console.error(error);
+            });
+        }
+    </script>
+
+</body>

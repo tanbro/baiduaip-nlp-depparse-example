@@ -1,0 +1,12 @@
+digraph G{
+    node [shape=record];
+    word_0 [label="ROOT"]
+    {%- for item in items %}
+    word_{{ item.id }} [label="({{ item.id }}) {{ item.word }} | {{ postags[item.postag] }}({{item.postag}})"];
+    {%- endfor %}
+
+    {%- for item in items %}
+    word_{{ item.head }} -> word_{{ item.id }}  [label="{{ deprels[item.deprel] }}"]
+    {%- endfor %}
+
+}
