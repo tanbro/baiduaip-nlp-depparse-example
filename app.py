@@ -1,9 +1,7 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory, abort, make_response
-
 from aip import AipNlp
 from jinja2 import Environment, FileSystemLoader
-
-import conf
+from flask import Flask, render_template, request, jsonify, send_from_directory, abort, make_response
+import yaml
 
 POSTAGS = {
     'Ag': '形语素',
@@ -87,7 +85,7 @@ DEPRELS = {
 
 
 app = Flask(__name__, static_url_path='')
-
+app.config.update(yaml.load(open('config.yml')))
 app.jinja_loader = FileSystemLoader('templates')
 
 
@@ -109,7 +107,7 @@ def visualize():
     assert 'text' in req_data
 
     # 调用依存句法分析
-    nlp = AipNlp(conf.APP_ID, conf.API_KEY, conf.SECRET_KEY)
+    nlp = AipNlp(app.config['APP_ID'], app.config['API_KEY'], app.config['SECRET_KEY'])
     result = nlp.depParser(req_data['text'], req_data.get('options', {}))
 
     if 'error_code' in result:

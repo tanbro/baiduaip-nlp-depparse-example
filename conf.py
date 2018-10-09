@@ -1,3 +1,0 @@
-APP_ID = '9603231'
-API_KEY = 'lKxr8ERLjgIpAPYEFvkPeGFu'
-SECRET_KEY = 'ZYvxwIUttbIlGinW4nV85rasicCAcVrn'
