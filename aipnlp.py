@@ -112,6 +112,6 @@ def visualize():
 
     res_data = render_template(
         'dependency_parsing.dot.jinja2',
-        items=deparse_result['items'], postags=POSTAGS, deprels=DEPRELS
+        text=deparse_result['text'], items=deparse_result['items'], postags=POSTAGS, deprels=DEPRELS
     )
     return jsonify(result=res_data)
