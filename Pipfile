@@ -6,7 +6,10 @@ name = "pypi"
 
 [packages]
 baidu-aip="*"
+Jinja2="*"
 flask="*"
 PyYAML="*"
 
 [dev-packages]
+"autopep8" = "*"
+pylint = "*"
