@@ -1,14 +1,13 @@
 digraph {
-    label="{{ text }}";
+    label="{{ text|escape }}";
 
     node [shape=record];
-    word_0 [label="ROOT"]
+    0 [label="ROOT"]
     {%- for item in items %}
-    word_{{ item.id }} [label="({{ item.id }}) {{ item.word }} | {{ postags[item.postag] }}({{item.postag}})"];
+    {{ item.id }} [label="{{ item.id }} | { {{ item.word|escape }} | {{ postags[item.postag]|escape }} }"];
     {%- endfor %}
 
     {%- for item in items %}
-    word_{{ item.head }} -> word_{{ item.id }}  [label="{{ deprels[item.deprel] }}"]
+    {{ item.head }} -> {{ item.id }}  [label="{{ deprels[item.deprel]|escape }}"]
     {%- endfor %}
-
 }

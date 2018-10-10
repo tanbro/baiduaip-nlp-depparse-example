@@ -1,3 +1,5 @@
+from re import escape
+
 from aip import AipNlp
 from jinja2 import Environment, FileSystemLoader
 from flask import Flask, render_template, request, jsonify, send_from_directory, abort, make_response
@@ -87,6 +89,7 @@ DEPRELS = {
 app = Flask(__name__, static_url_path='')
 app.config.update(yaml.load(open('config.yml')))
 app.jinja_loader = FileSystemLoader('templates')
+app.jinja_env.filters['escape'] = escape
 
 
 @app.route('/node_modules/<path:path>', methods=['GET'])
@@ -103,6 +106,8 @@ def index():
 def visualize():
     req_data = request.get_json()
 
+    print(req_data['text'])
+
     # 调用依存句法分析
     nlp = AipNlp(app.config['APP_ID'], app.config['API_KEY'], app.config['SECRET_KEY'])
     deparse_result = nlp.depParser(req_data['text'], req_data.get('options', {}))
@@ -114,4 +119,7 @@ def visualize():
         'dependency_parsing.dot.jinja2',
         text=deparse_result['text'], items=deparse_result['items'], postags=POSTAGS, deprels=DEPRELS
     )
+
+    print(res_data)
+
     return jsonify(result=res_data)

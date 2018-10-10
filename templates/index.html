@@ -34,6 +34,7 @@
                     alert(`百度云平台返回错误信息: ${data['error_msg']}`);
                     throw Error(data['error_msg']);
                 } else {
+                    console.log(data['result']);
                     d3.select("#graph").graphviz()
                         .renderDot(data['result']);
                 }
