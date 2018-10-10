@@ -35,7 +35,7 @@
                     throw Error(data['error_msg']);
                 } else {
                     d3.select("#graph").graphviz()
-                        .renderDot(data.data);
+                        .renderDot(data['result']);
                 }
             }).catch(function(error) {
                 console.error(error);

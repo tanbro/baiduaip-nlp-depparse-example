@@ -102,19 +102,16 @@ def index():
 @app.route('/visualize', methods=['POST'])
 def visualize():
     req_data = request.get_json()
-    print(req_data)
-    assert isinstance(req_data, dict)
-    assert 'text' in req_data
 
     # 调用依存句法分析
     nlp = AipNlp(app.config['APP_ID'], app.config['API_KEY'], app.config['SECRET_KEY'])
-    result = nlp.depParser(req_data['text'], req_data.get('options', {}))
+    deparse_result = nlp.depParser(req_data['text'], req_data.get('options', {}))
 
-    if 'error_code' in result:
-        return jsonify(result)
+    if 'error_code' in deparse_result:
+        return jsonify(deparse_result)
 
     res_data = render_template(
         'dependency_parsing.dot.jinja2',
-        items=result['items'], postags=POSTAGS, deprels=DEPRELS
+        items=deparse_result['items'], postags=POSTAGS, deprels=DEPRELS
     )
-    return jsonify(data=res_data)
+    return jsonify(result=res_data)
