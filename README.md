@@ -2,6 +2,8 @@
 
 百度AI开放平台基础NLP `POS` 功能的简单小例子。
 
+![在浏览器中运行的效果](snapshot.png)
+
 这个程序的 `Web` 服务程序使用 [Python][] 开发。
 
 ## 安装
@@ -10,16 +12,14 @@
 
 1. 安装 [Node.js][]，建议的版本是最新的长期支持版
 
-1. 准备一个目录，放置这个小程序。
-   下文中假定目录的路径是 `{workspace}`。
-
-   切换到这个目录:
+1. 下载项目代码，然后切换到项目的根目录:
 
    ```bash
-   cd {workspace}
+   git https://github.com/tanbro/baiduaip-nlp-pos-example01.git
+   cd baiduaip-nlp-pos-example01
    ```
 
-1. 在 [Python][] [虚拟环境][venv] 中运行这个小程序是最好不过的了。在目录 `venv` 建立 [虚拟环境][venv] :
+1. 在 [Python][] [虚拟环境][venv] 中运行这个程序是最好不过的了 —— 建立目录名为 `venv` 的 [虚拟环境][venv] :
 
    ```bash
    python -m venv venv
@@ -39,10 +39,10 @@
      venv/Scripts/Activate.bat
      ```
 
-1. 安装这个小 `Web` 程序所需的 [Python][] 包:
+1. 安装这个 `Web` 程序所需的 [Python][] 包:
 
    ```bash
-   python -m pip install -r requirements
+   pip install -r requirements.txt
    ```
 
 1. 安装安装这个小 `Web` 程序所需的 [Node.js][] 包:
