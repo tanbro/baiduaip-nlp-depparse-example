@@ -1,6 +1,6 @@
-# baiduaip-nlp-pos-example
+# baiduaip-nlp-depparse-example
 
-百度AI开放平台基础NLP `POS` 功能的简单小例子。
+百度AI开放平台基础NLP依存句法分析功能的简单小例子。
 
 ![在浏览器中运行的效果](snapshot.png)
 
@@ -15,8 +15,8 @@
 1. 下载项目代码，然后切换到项目的根目录:
 
    ```bash
-   git https://github.com/tanbro/baiduaip-nlp-pos-example01.git
-   cd baiduaip-nlp-pos-example01
+   git https://github.com/tanbro/baiduaip-nlp-depparse-example.git
+   cd baiduaip-nlp-depparse-example
    ```
 
 1. 在 [Python][] [虚拟环境][venv] 中运行这个程序是最好不过的了 —— 建立目录名为 `venv` 的 [虚拟环境][venv] :
