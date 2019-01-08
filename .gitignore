@@ -1,10 +1,6 @@
 # ignore config file
 /config.*
 
-# ignore lock file
-*.lock
-
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
